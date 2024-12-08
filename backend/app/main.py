@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 from app.api import content, auth, social
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -9,4 +13,4 @@ app.include_router(social.router, prefix="/social", tags=["social"])
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to the AI-powered content generation system!"}
+    return {"message": "Welcome to the IngenIAtor content generation system!"}

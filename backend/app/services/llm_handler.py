@@ -1,10 +1,11 @@
 from app.models.schemas import ContentRequest, ContentResponse
 import openai
 import requests
+import os
 
 def generate_content(request: ContentRequest) -> ContentResponse:
-    openai.api_key = "your-openai-api-key"
-    tavily_api_key = "tvly-YOUR_API_KEY"
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    tavily_api_key = os.getenv("TAVILY_API_KEY")
     
     prompt = f"Generate content for {request.platform} on the topic {request.topic} for {request.audience}"
     if request.personal_info:

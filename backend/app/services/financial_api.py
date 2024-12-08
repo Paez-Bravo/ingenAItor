@@ -1,7 +1,8 @@
 import requests
+import os 
 
 def get_financial_updates() -> str:
-    tavily_api_key = "tvly-YOUR_API_KEY"
+    tavily_api_key = os.getenv("TAVILY_API_KEY")
     tavily_response = requests.get(
         "https://api.tavily.com/search",
         params={"query": "latest financial market updates"},
