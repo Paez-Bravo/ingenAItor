@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pydantic
+openai
+pymongo
+requests
+python-jose
+passlib[bcrypt]
+langchain
+langgraph
+langsmith
+
