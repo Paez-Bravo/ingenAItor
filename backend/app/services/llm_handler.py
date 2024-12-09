@@ -7,7 +7,7 @@ def generate_content(request: ContentRequest) -> ContentResponse:
     openai.api_key = os.getenv("OPENAI_API_KEY")
     tavily_api_key = os.getenv("TAVILY_API_KEY")
     
-    prompt = f"Generate content for {request.platform} on the topic {request.topic} for {request.audience}"
+    prompt = f"Generate {request.platform} content on the topic {request.topic} for {request.audience} in {request.language}"
     if request.personal_info:
         prompt += f" including details about {request.personal_info}"
     
@@ -25,8 +25,7 @@ def generate_content(request: ContentRequest) -> ContentResponse:
         max_tokens=500,
         temperature=0.7,
         n=1,
-        stop=None,
-        language=request.language
+        stop=None
     )
     
-    return ContentResponse(content=response.choices[0].text, image_url=image_url)
+    return ContentResponse(content=response.choices[0].text.strip(), image_url=image_url)
